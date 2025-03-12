@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Heatmap with D3.js</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+        .cell {
+            stroke: #fff;
+        }
+        .tooltip {
+            position: absolute;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            pointer-events: none;
+            font-size: 14px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .symptom-label {
+            font-size: 12px;
+        }
+        .age-label {
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+<svg id="heatmap" width="900" height="550"></svg>
+<div class="tooltip" style="display: none;"></div>
+
+<script>
+    const labels = ["30-39", "40-49", "50-59", "60-69", "70-79", "80-89"];
+    const symptoms = ["SMOKING", "YELLOW_FINGERS", "ANXIETY", "CHRONIC_DISEASE",
+        "FATIGUE", "ALLERGY", "WHEEZING", "ALCOHOL_CONSUMING",
+        "COUGHING", "SHORTNESS_OF_BREATH", "SWALLOWING_DIFFICULTY", "CHEST_PAIN"];
+
+    const margin = { top: 40, right: 20, bottom: 80, left: 250 };
+    const cellWidth = 60;
+    const cellHeight = 30;
+    const width = margin.left + cellWidth * labels.length + margin.right;
+    const height = margin.top + cellHeight * symptoms.length + margin.bottom;
+
+    const svg = d3.select("#heatmap")
+        .attr("width", width)
+        .attr("height", height);
+
+    const tooltip = d3.select(".tooltip");
+
+    const colorDomain = [0.29, 0.35, 0.41, 0.45, 0.5, 0.54, 0.58, 0.64];
+    const colorRange = ["#00FF00", "#a9ee16", "#FFFF00", "#eeca16", "#ee8f16", "#ee4116", "#fc0909", "#b91515", "#8c0b0b"];
+
+    const colorScale = d3.scaleLinear()
+        .domain(colorDomain)
+        .range(colorRange);
+
+    d3.json("heatmap_data.json").then(data => {
+        symptoms.forEach((symptom, i) => {
+            labels.forEach((label, j) => {
+                const value = data[label][symptom];
+                const count = data[label][symptom + "_count"] || 0;
+
+                svg.append("rect")
+                    .attr("x", margin.left + j * cellWidth)
+                    .attr("y", margin.top + i * cellHeight)
+                    .attr("width", cellWidth)
+                    .attr("height", cellHeight)
+                    .attr("fill", colorScale(value))
+                    .attr("class", "cell")
+                    .on("mouseover", (event) => {
+                        tooltip.style("display", "block")
+                            .style("left", (event.pageX + 15) + "px")
+                            .style("top", (event.pageY - 28) + "px")
+                            .html(`
+                                <div><strong>${symptom}</strong></div>
+                                <div>Age: ${label}</div>
+                                <div>Prevalence: ${(value * 100).toFixed(1)}%</div>
+                                <div>People: ${count}</div>
+                            `);
+                    })
+                    .on("mousemove", (event) => {
+                        tooltip.style("left", (event.pageX + 15) + "px")
+                            .style("top", (event.pageY - 28) + "px");
+                    })
+                    .on("mouseout", () => {
+                        tooltip.style("display", "none");
+                    });
+            });
+        });
+
+        svg.selectAll(".symptom-label")
+            .data(symptoms)
+            .enter()
+            .append("text")
+            .attr("x", margin.left - 15)
+            .attr("y", (_, i) => margin.top + i * cellHeight + cellHeight / 2)
+            .attr("text-anchor", "end")
+            .attr("alignment-baseline", "middle")
+            .attr("class", "symptom-label")
+            .text(d => d);
+
+        svg.selectAll(".age-label")
+            .data(labels)
+            .enter()
+            .append("text")
+            .attr("x", (_, i) => margin.left + i * cellWidth + cellWidth / 2)
+            .attr("y", height - 55)
+            .attr("text-anchor", "middle")
+            .attr("class", "age-label")
+            .text(d => d);
+
+        svg.append("text")
+            .attr("x", width / 2)
+            .attr("y", 20)
+            .attr("text-anchor", "middle")
+            .style("font-size", "16px")
+            .style("font-weight", "bold")
+            .text("Symptom Prevalence by Age Group");
+
+        // Легенда
+        const legendWidth = 260;
+        const legendHeight = 15;
+        const legendX = width / 2 + 35;
+        const legendY = height - 35;
+
+        const legend = svg.append("g")
+            .attr("transform", `translate(${legendX}, ${legendY})`);
+
+        const defs = svg.append("defs");
+        const gradient = defs.append("linearGradient")
+            .attr("id", "gradient")
+            .attr("x1", "0%")
+            .attr("y1", "0%")
+            .attr("x2", "100%")
+            .attr("y2", "0%");
+
+        const stops = colorDomain.map((val, idx) => ({
+            offset: ((val - colorDomain[0]) / (colorDomain[colorDomain.length - 1] - colorDomain[0])) * 100 + "%",
+            color: colorRange[idx]
+        }));
+
+        stops.forEach(stop => {
+            gradient.append("stop")
+                .attr("offset", stop.offset)
+                .attr("stop-color", stop.color);
+        });
+
+        legend.append("rect")
+            .attr("width", legendWidth)
+            .attr("height", legendHeight)
+            .style("fill", "url(#gradient)");
+
+        const legendScale = d3.scaleLinear()
+            .domain([colorDomain[0], colorDomain[colorDomain.length - 1]])
+            .range([0, legendWidth]);
+
+        const legendAxis = d3.axisBottom(legendScale)
+            .ticks(6)
+            .tickFormat(d3.format(".0%"));
+
+        legend.append("g")
+            .attr("transform", `translate(0, ${legendHeight})`)
+            .call(legendAxis)
+            .selectAll("text")
+            .style("font-size", "10px");
+
+    }).catch(error => {
+        console.error("Ошибка загрузки данных:", error);
+    });
+</script>
+</body>
+</html>
