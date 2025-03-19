@@ -21,7 +21,7 @@ We use an external dataset from Kaggle, which provides detailed information on l
 - **Lung Cancer Presence:** YES/NO
 - **Dataset Size:** 3,000 patients (51% diagnosed with lung cancer)
 
-[Dataset Link](https://www.kaggle.com/datasets/akashnath29/lung-cancer-dataset) (Replace with actual link)
+[Dataset Link](https://www.kaggle.com/datasets/akashnath29/lung-cancer-dataset) 
 
 ## Technologies Used
 
