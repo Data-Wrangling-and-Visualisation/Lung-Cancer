@@ -58,7 +58,7 @@ function animate() {
 
 // Loads the cleaned dataset (JSON format) and updates the UI and visualization
 function loadData() {
-  fetch("../cleaned-lung-cancer-dataset/cleaned_data.json")
+  fetch("cleaned_data.json")
     .then((res) => res.json())
     .then((data) => {
       setupUI(data);     // Hook up the age slider and gender checkboxes

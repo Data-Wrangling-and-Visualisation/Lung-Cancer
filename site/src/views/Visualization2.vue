@@ -37,7 +37,7 @@
         -->
         <div class="w-full bg-white rounded-2xl shadow-xl p-4">
           <iframe
-              src="/parallel_d3.html"
+              src="/parallel/parallel_d3.html"
               class="w-full h-[800px] border-none rounded-lg"
               title="Parallel Coordinates Visualization"
           ></iframe>
