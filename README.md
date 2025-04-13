@@ -31,6 +31,49 @@ We use an external dataset from Kaggle, which provides detailed information on l
 - **Data Processing:** Pandas, NumPy, Scikit-learn
 - **Deployment:** Vercel (frontend), Heroku/AWS Lambda (backend), Redis (caching)
 
+## Checkpoints
+
+### Checkpoint 1: Data Preprocessing, EDA & Baseline Frontend
+
+In the first phase of the project, we focused on getting to know our dataset and ensuring it was clean and ready to be visualized. Here's what we did:
+
+- **Preprocessing** the raw Kaggle dataset to remove duplicates, handle missing values, and convert categorical fields.
+- **Exploratory Data Analysis (EDA)** to identify patterns, distributions, and outliers.
+- **Baseline frontend structure of website**.
+
+### Checkpoint 2: Interactive Bubble Visualization
+
+Our second milestone was all about creating usefull visualizations using D3 and Three.js, here is what we did:
+
+- **3D Bubble Visualization** using `Three.js`.
+![Alt text](Bubble-Diagram-threejs\BubbleDemo.png)
+
+- **Circular Treemap** using `D3`.
+![Alt text](Circular-Treemap-D3\CircularTreemapDemo.png)
+
+- **Parallel Coordinate Chart** using `D3`.
+![Alt text](parallel-visualisation\ParallelDemo.png)
+
+- **Interactive Heatmap** using `D3`.
+![Alt text](heatmap-visualisation\HeatmapDemo.png)
+
+- **Radar Chart** using `D3`.
+- **Sankey Diagram** using `D3`.
+- **Finilized our frontend**
+<p align="center">
+  <img src="SiteDemo1.png" width="45%" alt="Final Frontend Screenshot 1"/>
+  <img src="SiteDemo2.png" width="45%" alt="Final Frontend Screenshot 2"/>
+</p>
+---
+
+### What's Next
+
+- **Perfect the existing visualizations**: We have made the majority of our visualizations, but some of them need a little more work. Like, creating more interactions and styling them.
+- Polish the **GitHub repository** with more thorough documentation and code comments.
+- **Host the deployed version**.
+
+---
+
 ## Contributors
 
 - **Ekaterina Akimenko**
