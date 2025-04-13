@@ -1,0 +1,39 @@
+body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    background: #fefeff;
+  }
+  
+#controls {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 12px 20px;
+    background: #ffffffdd;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    z-index: 10;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(4px);
+}
+  
+#canvas-container {
+    width: 100vw;
+    height: 100vh;
+    margin-top: 60px;
+    overflow: hidden;
+}
+  
+.tooltip {
+    position: absolute;
+    background: #fff;
+    padding: 6px 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+    font-size: 13px;
+    display: none;
+    z-index: 1000;
+}
+  

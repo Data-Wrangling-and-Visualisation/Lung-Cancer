@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>🫧 Symptom Bubble Diagram</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="controls">
+    <label for="ageSlider">Age: <span id="ageValue">60</span></label>
+    <input type="range" id="ageSlider" min="20" max="100" value="60" />
+    <label><input type="checkbox" id="maleCheckbox" checked /> Male</label>
+    <label><input type="checkbox" id="femaleCheckbox" checked /> Female</label>
+  </div>
+  <div id="canvas-container"></div>
+  <script type="module" src="main.js"></script>
+</body>
+</html>
