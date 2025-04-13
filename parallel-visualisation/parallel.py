@@ -1,7 +1,6 @@
 import json
 
 # Load the cleaned dataset from a JSON file.
-
 with open("../cleaned-lung-cancer-dataset/cleaned_data.json", "r") as f:
     data = json.load(f)
 
@@ -46,7 +45,6 @@ for patient in data:
     processed_data.append(entry)
 
 # Save the transformed dataset into a new JSON file.
-# This file can be used as input for data visualization components (e.g., parallel coordinate charts).
 with open("parallel_data.json", "w") as f:
     json.dump(processed_data, f, indent=2)
 
