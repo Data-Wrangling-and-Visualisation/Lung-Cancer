@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Heatmap with D3.js</title>
+    <!-- Load D3.js from CDN -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        /* Basic styling for body and visualization elements */
+        body {
+            font-family: sans-serif;
+        }
+
+        .cell {
+            stroke: #fff; /* White border between cells */
+        }
+
+        .tooltip {
+            /* Styling for tooltip that appears on hover */
+            position: absolute;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            pointer-events: none;
+            font-size: 14px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .symptom-label,
+        .age-label {
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- SVG container for the heatmap -->
+<svg id="heatmap" width="900" height="550"></svg>
+<!-- Tooltip element, hidden by default -->
+<div class="tooltip" style="display: none;"></div>
+
+<script>
+    // Define age group labels and symptom categories
+    const labels = ["30-39", "40-49", "50-59", "60-69", "70-79", "80-89"];
+    const symptoms = ["SMOKING", "YELLOW_FINGERS", "ANXIETY", "CHRONIC_DISEASE",
+        "FATIGUE", "ALLERGY", "WHEEZING", "ALCOHOL_CONSUMING",
+        "COUGHING", "SHORTNESS_OF_BREATH", "SWALLOWING_DIFFICULTY", "CHEST_PAIN"];
+
+    // Define margin and cell sizing
+    const margin = { top: 40, right: 20, bottom: 80, left: 250 };
+    const cellWidth = 60;
+    const cellHeight = 30;
+    const width = margin.left + cellWidth * labels.length + margin.right;
+    const height = margin.top + cellHeight * symptoms.length + margin.bottom;
+
+    // Select and size the main SVG element
+    const svg = d3.select("#heatmap")
+        .attr("width", width)
+        .attr("height", height);
+
+    // Select tooltip element
+    const tooltip = d3.select(".tooltip");
+
+    // Define color scale domain and corresponding color range
+    const colorDomain = [0.29, 0.35, 0.41, 0.45, 0.5, 0.54, 0.58, 0.64];
+    const colorRange = ["#00FF00", "#a9ee16", "#FFFF00", "#eeca16", "#ee8f16", "#ee4116", "#fc0909", "#b91515", "#8c0b0b"];
+
+    const colorScale = d3.scaleLinear()
+        .domain(colorDomain)
+        .range(colorRange);
+
+    // Load heatmap data from external JSON file
+    d3.json("/heatmap_data.json").then(data => {
+        // Create heatmap cells
+        symptoms.forEach((symptom, i) => {
+            labels.forEach((label, j) => {
+                const value = data[label][symptom];  // prevalence value
+                const count = data[label][symptom + "_count"] || 0; // raw count (optional)
+
+                // Draw each cell as a colored rectangle
+                svg.append("rect")
+                    .attr("x", margin.left + j * cellWidth)
+                    .attr("y", margin.top + i * cellHeight)
+                    .attr("width", cellWidth)
+                    .attr("height", cellHeight)
+                    .attr("fill", colorScale(value))
+                    .attr("class", "cell")
+                    .on("mouseover", (event) => {
+                        // Show tooltip on hover
+                        tooltip.style("display", "block")
+                            .style("left", (event.pageX + 15) + "px")
+                            .style("top", (event.pageY - 28) + "px")
+                            .html(`
+                                <div><strong>${symptom}</strong></div>
+                                <div>Age: ${label}</div>
+                                <div>Prevalence: ${(value * 100).toFixed(1)}%</div>
+                                <div>People: ${count}</div>
+                            `);
+                    })
+                    .on("mousemove", (event) => {
+                        // Follow mouse movement
+                        tooltip.style("left", (event.pageX + 15) + "px")
+                            .style("top", (event.pageY - 28) + "px");
+                    })
+                    .on("mouseout", () => {
+                        // Hide tooltip
+                        tooltip.style("display", "none");
+                    });
+            });
+        });
+
+        // Add labels for symptoms (rows)
+        svg.selectAll(".symptom-label")
+            .data(symptoms)
+            .enter()
+            .append("text")
+            .attr("x", margin.left - 15)
+            .attr("y", (_, i) => margin.top + i * cellHeight + cellHeight / 2)
+            .attr("text-anchor", "end")
+            .attr("alignment-baseline", "middle")
+            .attr("class", "symptom-label")
+            .text(d => d);
+
+        // Add labels for age groups (columns)
+        svg.selectAll(".age-label")
+            .data(labels)
+            .enter()
+            .append("text")
+            .attr("x", (_, i) => margin.left + i * cellWidth + cellWidth / 2)
+            .attr("y", height - 55)
+            .attr("text-anchor", "middle")
+            .attr("class", "age-label")
+            .text(d => d);
+
+        // Add title to the heatmap
+        svg.append("text")
+            .attr("x", width / 2)
+            .attr("y", 20)
+            .attr("text-anchor", "middle")
+            .style("font-size", "16px")
+            .style("font-weight", "bold")
+            .text("Symptom Prevalence by Age Group");
+
+        // ---------------- Legend ----------------
+
+        const legendWidth = 260;
+        const legendHeight = 15;
+        const legendX = width / 2 + 35;
+        const legendY = height - 35;
+
+        // Add a group for the legend
+        const legend = svg.append("g")
+            .attr("transform", `translate(${legendX}, ${legendY})`);
+
+        // Create gradient definition for legend scale
+        const defs = svg.append("defs");
+        const gradient = defs.append("linearGradient")
+            .attr("id", "gradient")
+            .attr("x1", "0%").attr("y1", "0%")
+            .attr("x2", "100%").attr("y2", "0%");
+
+        // Dynamically compute gradient stops based on domain values
+        const stops = colorDomain.map((val, idx) => ({
+            offset: ((val - colorDomain[0]) / (colorDomain[colorDomain.length - 1] - colorDomain[0])) * 100 + "%",
+            color: colorRange[idx]
+        }));
+
+        stops.forEach(stop => {
+            gradient.append("stop")
+                .attr("offset", stop.offset)
+                .attr("stop-color", stop.color);
+        });
+
+        // Draw the legend color bar
+        legend.append("rect")
+            .attr("width", legendWidth)
+            .attr("height", legendHeight)
+            .style("fill", "url(#gradient)");
+
+        // Create and render axis for the legend
+        const legendScale = d3.scaleLinear()
+            .domain([colorDomain[0], colorDomain[colorDomain.length - 1]])
+            .range([0, legendWidth]);
+
+        const legendAxis = d3.axisBottom(legendScale)
+            .ticks(6)
+            .tickFormat(d3.format(".0%"));
+
+        legend.append("g")
+            .attr("transform", `translate(0, ${legendHeight})`)
+            .call(legendAxis)
+            .selectAll("text")
+            .style("font-size", "10px");
+
+    }).catch(error => {
+        // Handle data loading error
+        console.error("Error loading heatmap data:", error);
+    });
+</script>
+
+</body>
+</html>
