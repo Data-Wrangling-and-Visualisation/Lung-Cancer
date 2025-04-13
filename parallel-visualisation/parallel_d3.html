@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Define character encoding and page title -->
     <meta charset="UTF-8">
     <title>Parallel Coordinates - Lung Cancer</title>
+
+    <!-- Load the D3.js v7 library for data-driven document manipulation -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
+
     <style>
+        /* Basic layout and typography for the body */
         body {
             font-family: sans-serif;
             margin: 20px;
         }
 
+        /* Style for axis labels */
         .axis text {
             font-size: 10px;
         }
 
+        /* Default style for each parallel coordinate line */
         .line {
             fill: none;
             stroke-width: 1.5px;
@@ -22,11 +29,13 @@
             transition: opacity 0.2s, stroke-width 0.2s;
         }
 
+        /* Highlighted style on mouse hover */
         .line:hover {
             stroke-width: 3px;
             opacity: 1;
         }
 
+        /* Tooltip box style for displaying details on hover */
         .tooltip {
             position: absolute;
             background-color: white;
@@ -38,10 +47,12 @@
             border-radius: 4px;
         }
 
+        /* Styling for filter controls */
         .filters {
             margin-bottom: 15px;
         }
 
+        /* Styling for the legend that shows age group colors */
         .legend {
             margin-top: 10px;
         }
@@ -57,6 +68,7 @@
 </head>
 <body>
 
+<!-- Filter controls section for age group and lung cancer diagnosis -->
 <div class="filters">
     <strong>Filter by Age Group:</strong><br>
     <div id="age-filter"></div>
@@ -66,37 +78,53 @@
     <label><input type="checkbox" class="cancer-filter" value="NO" checked> NO</label>
 </div>
 
+<!-- SVG element where the parallel coordinates plot will be rendered -->
 <svg width="1600" height="520"></svg>
+
+<!-- Tooltip div (initially hidden) to show data details on hover -->
 <div class="tooltip" style="display: none;"></div>
+
+<!-- Legend to explain color coding of different age groups -->
 <div class="legend" id="legend"></div>
 
 <script>
+    // Set up margins and calculate usable width/height inside the SVG
     const svg = d3.select("svg"),
         margin = { top: 60, right: 100, bottom: 80, left: 50 },
         width = +svg.attr("width") - margin.left - margin.right,
         height = +svg.attr("height") - margin.top - margin.bottom;
 
+    // Create a main group element to offset drawing area by margins
     const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
 
+    // Dimensions to include in the parallel coordinate plot
     const dimensions = [
         "LUNG_CANCER", "SMOKING", "YELLOW_FINGERS", "ANXIETY", "PEER_PRESSURE",
         "CHRONIC_DISEASE", "FATIGUE", "ALLERGY", "WHEEZING", "ALCOHOL_CONSUMING",
         "COUGHING", "SHORTNESS_OF_BREATH", "SWALLOWING_DIFFICULTY", "CHEST_PAIN"
     ];
 
+    // `y` will hold one scale per dimension
     const y = {};
+
+    // Define horizontal (x) scale to evenly space each axis
     const x = d3.scalePoint().range([0, width]).padding(1).domain(dimensions);
 
+    // Select the tooltip div for later use
     const tooltip = d3.select(".tooltip");
 
+    // Load data asynchronously
     d3.json("parallel_data.json").then(data => {
+        // Extract unique age groups for filtering and coloring
         const ageGroups = [...new Set(data.map(d => d.age_group))];
         const color = d3.scaleOrdinal(d3.schemeCategory10).domain(ageGroups);
 
+        // Convert lung cancer from numeric (1/0) to string labels (YES/NO)
         data.forEach(d => {
             d.LUNG_CANCER = d.LUNG_CANCER === 1 ? "YES" : "NO";
         });
 
+        // Initialize a vertical scale for each dimension
         for (let dim of dimensions) {
             if (dim === "LUNG_CANCER") {
                 y[dim] = d3.scalePoint().domain(["NO", "YES"]).range([height, 0]);
@@ -105,7 +133,7 @@
             }
         }
 
-        // Add axis
+        // Create one vertical axis per dimension
         g.selectAll(".axis")
             .data(dimensions)
             .enter()
@@ -125,7 +153,7 @@
             .style("fill", "black")
             .style("font-size", "12px");
 
-        // Add checkboxes
+        // Create checkbox filters for each age group
         const ageFilterDiv = d3.select("#age-filter");
         ageGroups.forEach(age => {
             ageFilterDiv.append("label")
@@ -133,7 +161,7 @@
                 .style("margin-right", "10px");
         });
 
-        // Add legend
+        // Render a legend for color coding by age group
         const legendDiv = d3.select("#legend");
         ageGroups.forEach(age => {
             legendDiv.append("div")
@@ -142,11 +170,14 @@
                 .style("margin-right", "15px");
         });
 
+        // Generate a path for a given data point across all dimensions
         function path(d) {
             return d3.line()(dimensions.map(p => [x(p), y[p](d[p])]));
         }
 
+        // Update function: filters and redraws lines based on checkbox states
         function update() {
+            // Get selected age groups and cancer statuses from checkboxes
             const selectedAges = Array.from(document.querySelectorAll(".age-check"))
                 .filter(cb => cb.checked)
                 .map(cb => cb.value);
@@ -155,13 +186,16 @@
                 .filter(cb => cb.checked)
                 .map(cb => cb.value);
 
+            // Filter dataset based on selected filters
             const filtered = data.filter(d =>
                 selectedAges.includes(d.age_group) &&
                 selectedCancer.includes(d.LUNG_CANCER)
             );
 
+            // Clear previous lines
             g.selectAll(".line").remove();
 
+            // Draw new filtered lines
             g.selectAll(".line")
                 .data(filtered)
                 .enter()
@@ -170,6 +204,7 @@
                 .attr("d", path)
                 .attr("stroke", d => color(d.age_group))
                 .on("mouseover", function(event, d) {
+                    // Emphasize hovered line and show tooltip
                     d3.select(this).raise().attr("stroke-width", 3).style("opacity", 1);
                     tooltip
                         .style("display", "block")
@@ -183,13 +218,16 @@
                         .style("top", (event.pageY - 30) + "px");
                 })
                 .on("mouseout", function() {
+                    // Restore line and hide tooltip when not hovering
                     d3.select(this).attr("stroke-width", 1.5).style("opacity", 0.5);
                     tooltip.style("display", "none");
                 });
         }
 
+        // Initial rendering of all lines
         update();
 
+        // Re-render plot when filters change
         d3.selectAll(".age-check, .cancer-filter").on("change", update);
     });
 </script>
