@@ -41,21 +41,29 @@ In the first phase of the project, we focused on getting to know our dataset and
 - **Exploratory Data Analysis (EDA)** to identify patterns, distributions, and outliers.
 - **Baseline frontend structure of website**.
 
-### Checkpoint 2: Interactive Bubble Visualization
+### Checkpoint 2:
 
 Our second milestone was all about creating usefull visualizations using D3 and Three.js, here is what we did:
 
 - **3D Bubble Visualization** using `Three.js`.
-![Alt text](Bubble-Diagram-threejs\BubbleDemo.png)
+<p align="center">
+  <img src="Bubble-Diagram-threejs/BubbleDemo.png" width="60%" alt="3D Bubble Visualization">
+</p>
 
 - **Circular Treemap** using `D3`.
-![Alt text](Circular-Treemap-D3\CircularTreemapDemo.png)
+<p align="center">
+  <img src="Circular-Treemap-D3/CircularTreemapDemo.png" width="60%" alt="Circular Treemap">
+</p>
 
 - **Parallel Coordinate Chart** using `D3`.
-![Alt text](parallel-visualisation\ParallelDemo.png)
+<p align="center">
+  <img src="parallel-visualisation/ParallelDemo.png" width="60%" alt="Parallel Coordinate Chart">
+</p>
 
 - **Interactive Heatmap** using `D3`.
-![Alt text](heatmap-visualisation\HeatmapDemo.png)
+<p align="center">
+  <img src="heatmap-visualisation/HeatmapDemo.png" width="60%" alt="Interactive Heatmap">
+</p>
 
 - **Radar Chart** using `D3`.
 - **Sankey Diagram** using `D3`.
