@@ -1,5 +1,5 @@
-import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.module.js";
-import { OrbitControls } from "./lib/OrbitControls.js";
+import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 let scene, camera, renderer, controls, bubbleGroup;
 const symptoms = ["COUGHING", "FATIGUE", "WHEEZING", "SHORTNESS_OF_BREATH", "CHEST_PAIN"];
@@ -45,7 +45,7 @@ function animate() {
 }
 
 function loadData() {
-  fetch("../cleaned-lung-cancer-dataset/cleaned_data.json")
+  fetch("cleaned_data.json")
     .then((res) => res.json())
     .then((data) => {
       setupUI(data);

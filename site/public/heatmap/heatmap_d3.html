@@ -71,7 +71,7 @@
         .range(colorRange);
 
     // Load heatmap data from external JSON file
-    d3.json("/heatmap_data.json").then(data => {
+    d3.json("/heatmap/heatmap_data.json").then(data => {
         // Create heatmap cells
         symptoms.forEach((symptom, i) => {
             labels.forEach((label, j) => {

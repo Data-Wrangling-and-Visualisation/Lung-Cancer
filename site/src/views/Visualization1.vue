@@ -38,7 +38,7 @@
         -->
         <div class="lg:w-2/3 w-full bg-white rounded-2xl shadow-xl p-4">
           <iframe
-              src="/heatmap_d3.html"
+              src="/heatmap/heatmap_d3.html"
               class="w-full h-[500px] border-none rounded-lg"
               title="Symptom Heatmap Visualization"
           ></iframe>
