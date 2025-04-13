@@ -17,7 +17,7 @@ def get_cleaned_data():
         data = json.load(f)
     return jsonify(data)
 
-@app.route("/parallel_data", method=["GET"])
+@app.route("/parallel_data", methods=["GET"])
 def get_parallel_data():
     with open("../parallel-visualisation.json") as f:
         data = json.load(f)
