@@ -66,7 +66,15 @@ Our second milestone was all about creating usefull visualizations using D3 and 
 </p>
 
 - **Radar Chart** using `D3`.
+<p align="center">
+  <img src="radarchart/RadarchartDemo.png" width="60%" alt="Radar Chart">
+</p>
+
 - **Sankey Diagram** using `D3`.
+<p align="center">
+  <img src="site/public/sankey/SankeyDemo.png" width="60%" alt="Sankey Chart">
+</p>
+
 - **Finilized our frontend**
 <p align="center">
   <img src="SiteDemo1.png" width="45%" alt="Final Frontend Screenshot 1"/>
