@@ -81,7 +81,25 @@ Our second milestone was all about creating usefull visualizations using D3 and 
 - **Host the deployed version**.
 
 ---
+### Running the Application
 
+1. Clone the repository:
+
+   ```sh
+   git clone https://github.com/Data-Wrangling-and-Visualisation/Lung-Cancer.git
+   ```
+
+2. Build and start the Docker containers:
+
+   ```sh
+   docker-compose up --build
+   ```
+
+3. Access the frontend in your browser by link(you will see it in terminal):
+   ```
+   http://localhost:5173/
+   ```
+---
 ## Contributors
 
 - **Ekaterina Akimenko**
