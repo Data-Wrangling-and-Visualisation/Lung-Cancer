@@ -136,6 +136,19 @@
               </ul>
             </div>
           </div>
+          <!-- Utility Section: Describes practical use and value of this chart -->
+          <div>
+            <h3 class="font-semibold text-lg mb-2 mt-4 text-gray-700">Why is it useful?</h3>
+            <p class="text-left text-gray-700">
+              The parallel coordinate chart helps:
+            </p>
+            <ul class="text-left list-disc pl-5 space-y-2 mt-2 text-gray-700">
+              <li>Clinicians identify symptom combinations that appear in high-risk profiles</li>
+              <li>Compare individual symptom journeys side by side</li>
+              <li>Reveal age-related clustering of complex symptom patterns</li>
+            </ul>
+          </div>
+
         </div> <!-- End of Description Panel -->
       </div> <!-- End of Main Content -->
     </div>

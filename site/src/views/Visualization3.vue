@@ -45,33 +45,26 @@
             <p>
               This <strong class="text-blue-600">interactive 3D bubble chart</strong> visualizes symptom prevalence.
             </p>
-            <div>
-              <h3 class="font-semibold text-lg mb-3">Key Features:</h3>
-              <ul class="space-y-4">
-                <li v-for="(feature, index) in features" :key="index" class="flex items-start">
-                  <span class="flex-shrink-0 mt-1 mr-3 text-blue-500">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                    </svg>
-                  </span>
-                  <span>{{ feature }}</span>
-                </li>
-              </ul>
-            </div>
-            <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r">
-              <p class="italic text-blue-800">
-                <strong>Tip:</strong> Drag to rotate the view and scroll to zoom in/out.
-              </p>
-            </div>
-            <div>
-              <h3 class="font-semibold text-lg mb-3">Analytical Insights:</h3>
-              <ul class="text-left list-disc pl-5 space-y-2">
-                <li>Compare symptom prevalence across age ranges</li>
-                <li>Identify gender-specific symptom patterns</li>
-                <li>Detect unusually prevalent symptoms</li>
-              </ul>
-            </div>
+            <ul class="space-y-2">
+              <li>Bubble size = symptom prevalence</li>
+              <li>Filter by age and gender</li>
+              <li>Tooltip on hover: symptom + count</li>
+              <li>Drag to rotate, scroll to zoom</li>
+            </ul>
           </div>
+          <!-- Utility Section -->
+          <div>
+            <h3 class="font-semibold text-lg mb-2 mt-4 text-gray-700">Why is it useful?</h3>
+            <p class="text-left text-gray-700">
+              This 3D chart allows researchers and clinicians to:
+            </p>
+            <ul class="text-left list-disc pl-5 space-y-2 mt-2 text-gray-700">
+              <li>Visually compare symptom intensity in different demographics</li>
+              <li>Quickly identify symptoms with high concentration in certain age groups</li>
+              <li>Interactively explore how gender influences symptom distribution</li>
+            </ul>
+          </div>
+
         </div>
       </div>
     </div>
@@ -88,15 +81,9 @@ const age = ref(50)
 const male = ref(true)
 const female = ref(true)
 
-const features = [
-  'Bubble size represents symptom prevalence',
-  'Age slider dynamically filters visualization',
-  'Gender filters isolate male/female data',
-  '3D rotation for different viewing angles'
-]
-
 const symptoms = ["COUGHING", "FATIGUE", "WHEEZING", "SHORTNESS_OF_BREATH", "CHEST_PAIN"]
 let scene, camera, renderer, controls, bubbleGroup, jsonData
+let raycaster, mouse, tooltip
 
 onMounted(() => {
   initScene()
@@ -106,6 +93,22 @@ onMounted(() => {
         jsonData = data
         updateBubbles()
       })
+
+  // Tooltip
+  raycaster = new THREE.Raycaster()
+  mouse = new THREE.Vector2()
+  tooltip = document.createElement("div")
+  tooltip.style.position = "absolute"
+  tooltip.style.padding = "6px 10px"
+  tooltip.style.background = "#333"
+  tooltip.style.color = "#fff"
+  tooltip.style.borderRadius = "6px"
+  tooltip.style.fontSize = "14px"
+  tooltip.style.pointerEvents = "none"
+  tooltip.style.display = "none"
+  document.body.appendChild(tooltip)
+
+  window.addEventListener("mousemove", handleMouseMove)
 })
 
 watch([age, male, female], updateBubbles)
@@ -184,10 +187,34 @@ function drawBubbles(counts) {
       metalness: 0.1,
     })
     const bubble = new THREE.Mesh(geometry, material)
+    bubble.userData = { symptom, count } // 🔍 used for tooltip
+
     const angle = (index / total) * Math.PI * 2
     bubble.position.set(Math.cos(angle) * 60, Math.sin(angle) * 60, (Math.random() - 0.5) * 50)
     bubbleGroup.add(bubble)
     index++
+  }
+}
+
+function handleMouseMove(event) {
+  if (!renderer || !bubbleGroup) return
+
+  const rect = renderer.domElement.getBoundingClientRect()
+  mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1
+  mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1
+
+  raycaster.setFromCamera(mouse, camera)
+  const intersects = raycaster.intersectObjects(bubbleGroup.children)
+
+  if (intersects.length > 0) {
+    const obj = intersects[0].object
+    const { symptom, count } = obj.userData
+    tooltip.style.display = "block"
+    tooltip.innerHTML = `<strong>${symptom}</strong><br/>Count: ${count}`
+    tooltip.style.left = event.clientX + 10 + "px"
+    tooltip.style.top = event.clientY + 10 + "px"
+  } else {
+    tooltip.style.display = "none"
   }
 }
 </script>
