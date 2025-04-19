@@ -96,6 +96,17 @@
                 <li>Understand hierarchical relationships in patient data</li>
               </ul>
             </div>
+            <!-- Utility Section -->
+            <div>
+              <h3 class="font-semibold text-lg mb-2 mt-4 text-gray-700">Why is it useful?</h3>
+              <p class="text-left text-gray-700">
+                This treemap is especially valuable for:
+              </p>
+              <ul class="text-left list-disc pl-5 space-y-2 mt-2 text-gray-700">
+                <li>Getting a quick overview of the population breakdown</li>
+                <li>Spotting demographic groups with high symptom density</li>
+              </ul>
+            </div>
 
 
           </div>

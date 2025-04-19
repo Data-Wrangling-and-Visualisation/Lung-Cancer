@@ -87,7 +87,6 @@
             <span class="w-6 h-6 bg-indigo-500 rounded-full mr-3"></span>
             Our Approach
           </h2>
-
           <!-- Brief explanation of the technical and design philosophy of the project -->
           <p class="text-gray-700 mb-6">
             Behind every chart is a story — of data wrangling, thoughtful design, and a passion for making health information more accessible.
@@ -101,6 +100,92 @@
           </div>
         </div>
       </div>
+      <!-- Visual Insights Section: Encourages exploration of specific visualizations -->
+      <div class="mt-12 w-full max-w-4xl">
+        <div class="bg-indigo-50 border border-indigo-100 rounded-2xl p-6 shadow-md">
+          <p class="text-2xl text-gray-1200 mb-4">Curious how <span class="font-semibold text-indigo-700">age</span> impacts <span class="font-semibold text-indigo-700">symptoms</span>?</p>
+          <p class="text-gray-700 mb-4">
+            Our <span class="font-semibold text-indigo-700">heatmap visualization</span> reveals how common symptoms vary across different age groups. Each colored cell shows how frequently a symptom appears for a specific age range — darker shades mean higher frequency.
+          </p>
+          <router-link to="/visualizations/1">
+            <button class="bg-indigo-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-indigo-700 transition">
+              Explore Heatmap
+            </button>
+          </router-link>
+        </div>
+      </div>
+
+      <div class="mt-12 w-full max-w-4xl">
+        <div class="bg-blue-50 border border-blue-100 rounded-2xl p-6 shadow-md">
+          <h3 class="text-2xl text-gray-1200 mb-4">Want to explore how symptoms appear together <span class="font-semibold text-indigo-700"> across patients</span>?</h3>
+          <p class="text-gray-700 mb-4">
+            Our <span class="font-semibold text-blue-700">Parallel Coordinate Chart</span> allows you to view each patient as a line intersecting across symptoms. You can easily identify which symptoms appear together, who shows more of them, and how they differ by age. This chart makes it easy to detect complex relationships across individuals.
+          </p>
+          <router-link to="/visualizations/2">
+            <button class="bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-blue-700 transition">
+              View Parallel Chart
+            </button>
+          </router-link>
+        </div>
+      </div>
+
+      <div class="mt-12 w-full max-w-4xl">
+        <div class="bg-indigo-50 border border-indigo-100 rounded-2xl p-6 shadow-md">
+          <h3 class="text-2xl text-gray-1200 mb-4">Curious how <span class="font-semibold text-indigo-700">symptom frequency</span> shifts with age and gender?</h3>
+          <p class="text-gray-700 mb-4">
+            The <span class="font-semibold text-indigo-700">3D Bubble Chart</span> places symptoms in a 3D space where bubble size reflects how common a symptom is. An age slider lets you explore how symptoms change across age groups, and gender filters let you isolate patterns. When hover over it, information appears - the name of the symptom and the number of people with it. A fun and interactive way to see the big picture.
+          </p>
+          <router-link to="/visualizations/3">
+            <button class="bg-indigo-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-indigo-700 transition">
+              View 3D Bubble Chart
+            </button>
+          </router-link>
+        </div>
+      </div>
+
+      <div class="mt-12 w-full max-w-4xl">
+        <div class="bg-blue-50 border border-blue-100 rounded-2xl p-6 shadow-md">
+          <h3 class="text-2xl text-gray-1200 mb-4">Want to see how <span class="font-semibold text-indigo-700">gender, age, and symptoms</span> are connected?</h3>
+          <p class="text-gray-700 mb-4">
+            The <span class="font-semibold text-blue-700">Circular Treemap</span> groups data by gender, age, and symptoms in a concentric layout. It gives you a quick overview of how many people fall into each category. Click on any segment to reveal deeper statistics — a great way to dig into patterns.
+          </p>
+          <router-link to="/visualizations/4">
+            <button class="bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-blue-700 transition">
+              View Circular Treemap
+            </button>
+          </router-link>
+        </div>
+      </div>
+
+      <div class="mt-12 w-full max-w-4xl">
+        <div class="bg-indigo-50 border border-indigo-100 rounded-2xl p-6 shadow-md">
+          <h3 class="text-2xl text-gray-1200 mb-4"> Want to track symptom changes as people <span class="font-semibold text-indigo-700">get older</span>?</h3>
+          <p class="text-gray-700 mb-4">
+            The <span class="font-semibold text-indigo-700">Radar Chart</span> places symptoms around a circle and shows how common each one is depending on the selected age. It’s an excellent way to see which symptoms become more or less common over time.
+          </p>
+          <router-link to="/visualizations/5">
+            <button class="bg-indigo-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-indigo-700 transition">
+              View Radar Chart
+            </button>
+          </router-link>
+        </div>
+      </div>
+
+      <div class="mt-12 w-full max-w-4xl">
+        <div class="bg-blue-50 border border-blue-100 rounded-2xl p-6 shadow-md">
+          <h3 class="text-2xl text-gray-1200 mb-4">Interested in how symptoms and age lead <span class="font-semibold text-indigo-700">to higher risk</span>?</h3>
+          <p class="text-gray-700 mb-4">
+            Our <span class="font-semibold text-blue-700">Sankey Diagram</span> shows how age and symptoms connect to lung cancer probability. Follow the flow from left to right to understand how various factors combine. Great for spotting high-risk groups.
+          </p>
+          <router-link to="/visualizations/6">
+            <button class="bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-blue-700 transition">
+              View Sankey Diagram
+            </button>
+          </router-link>
+        </div>
+      </div>
+
+
     </div>
   </div>
 </template>

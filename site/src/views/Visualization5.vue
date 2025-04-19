@@ -6,7 +6,7 @@
           <span
             class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-800"
           >
-            Symptom Radar Chart
+            Radar Chart Analysis
           </span>
         </h1>
         <p class="text-xl text-gray-600">
@@ -68,6 +68,18 @@
                 <li>Spot patterns in patient-reported outcomes</li>
               </ul>
             </div>
+            <!-- Utility Section: Why this radar chart is useful -->
+            <div>
+              <h3 class="font-semibold text-lg mb-2 mt-4 text-gray-700">Why is it useful?</h3>
+              <p class="text-left text-gray-700">
+                This radar chart supports medical analysis by helping to:
+              </p>
+              <ul class="text-left list-disc pl-5 space-y-2 mt-2 text-gray-700">
+                <li>Track how symptom patterns change with age progression</li>
+                <li>Spot unusual spikes or drops in symptom frequency</li>
+              </ul>
+            </div>
+
           </div>
         </div>
       </div>
