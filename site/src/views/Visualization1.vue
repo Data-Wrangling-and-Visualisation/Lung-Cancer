@@ -94,6 +94,19 @@
               </ul>
             </div>
 
+            <!-- Utility Section: Describes practical use and value of this heatmap -->
+            <div>
+              <h3 class="font-semibold text-lg mb-2 text-gray-800">Why is it useful?</h3>
+              <p class="text-left text-gray-700">
+                This heatmap enables doctors and researchers to:
+              </p>
+              <ul class="text-left list-disc pl-5 space-y-2 mt-2 text-gray-700">
+                <li>Quickly spot unusual symptom trends in younger vs older patients</li>
+                <li>Prioritize symptoms that frequently co-occur in critical age ranges</li>
+                <li>Support early detection by highlighting emerging patterns</li>
+              </ul>
+            </div>
+
           </div>
         </div>
       </div>

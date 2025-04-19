@@ -6,7 +6,7 @@
           <span
             class="bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-indigo-800"
           >
-            Cancer Probability
+            Sankey Diagram Analysis
           </span>
         </h1>
         <p class="text-xl text-gray-600">
@@ -85,6 +85,19 @@
                 <li>Gain better understanding of conditional probabilities</li>
               </ul>
             </div>
+            <!-- Utility Section: Why this Sankey diagram is useful -->
+            <div>
+              <h3 class="font-semibold text-lg mb-2 mt-4 text-gray-700">Why is it useful?</h3>
+              <p class="text-left text-gray-700">
+                This Sankey diagram enables researchers and practitioners to:
+              </p>
+              <ul class="text-left list-disc pl-5 space-y-2 mt-2 text-gray-700">
+                <li>Understand how age and symptoms combine to influence risk</li>
+                <li>Identify symptom paths leading to higher probabilities of lung cancer</li>
+                <li>Focus attention on the most impactful health patterns for early intervention</li>
+              </ul>
+            </div>
+
           </div>
         </div>
       </div>
