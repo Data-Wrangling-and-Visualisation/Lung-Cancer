@@ -122,7 +122,7 @@
             <!-- Helpful hint block to assist users in interpreting data clusters -->
             <div class="bg-indigo-50 border-l-4 border-indigo-500 p-4 rounded-r">
               <p class="italic text-indigo-800">
-                <strong>Pro Tip:</strong> Look for clusters of similar lines to identify common symptom patterns.
+                <strong>Interactive Features:</strong> Hover on the lines to the whole information of that demographic. Click on the line to see the whole path.
               </p>
             </div>
 

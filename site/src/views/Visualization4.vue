@@ -33,10 +33,11 @@
 
           <div class="space-y-6 text-gray-700">
             <p>
-              This <strong class="text-purple-600">interactive circular treemap</strong> displays hierarchical patient data with three levels of categorization:
+              This <strong class="text-purple-600">interactive circular treemap</strong>  visualizes lung cancer symptom distribution across gender and age groups.
             </p>
 
             <div class="space-y-4">
+              <!-- Gender -->
               <div class="flex items-start">
                 <span class="flex-shrink-0 mt-1 mr-3 text-purple-500">
                   <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -44,18 +45,19 @@
                   </svg>
                 </span>
                 <div>
-                  <h3 class="font-semibold">Outer Ring - Gender:</h3>
+                  <h3 class="font-semibold">Left/Right Split - Gender:</h3>
                   <div class="flex items-center mt-2">
-                    <span class="w-4 h-4 bg-red-500 rounded-full mr-2"></span>
+                    <span class="w-4 h-4 bg-blue-500 rounded-full mr-2"></span>
                     <span class="text-sm">Male patients</span>
                   </div>
                   <div class="flex items-center mt-1">
-                    <span class="w-4 h-4 bg-green-500 rounded-full mr-2"></span>
+                    <span class="w-4 h-4 bg-red-500 rounded-full mr-2"></span>
                     <span class="text-sm">Female patients</span>
                   </div>
                 </div>
               </div>
 
+              <!-- Age Group -->
               <div class="flex items-start">
                 <span class="flex-shrink-0 mt-1 mr-3 text-purple-500">
                   <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -63,11 +65,14 @@
                   </svg>
                 </span>
                 <div>
-                  <h3 class="font-semibold">Middle Ring - Age Groups:</h3>
-                  <p class="text-sm mt-2">Segment size corresponds to patient count in each age range</p>
+                  <h3 class="font-semibold">Color Shade - Age Group:</h3>
+                  <p class="text-sm mt-2">
+                    Lighter shades represent younger patients, while darker shades indicate older ones.
+                  </p>
                 </div>
               </div>
 
+              <!-- Symptoms -->
               <div class="flex items-start">
                 <span class="flex-shrink-0 mt-1 mr-3 text-purple-500">
                   <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -75,15 +80,17 @@
                   </svg>
                 </span>
                 <div>
-                  <h3 class="font-semibold">Inner Segments - Symptoms:</h3>
-                  <p class="text-sm mt-2">Detailed breakdown of symptom prevalence within each demographic</p>
+                  <h3 class="font-semibold">Inner Cells - Symptoms:</h3>
+                  <p class="text-sm mt-2">
+                    Each cell represents a specific symptom. The larger the cell, the more patients reported it within that demographic group.
+                  </p>
                 </div>
               </div>
             </div>
 
             <div class="bg-purple-50 border-l-4 border-purple-500 p-4 rounded-r">
               <p class="italic text-purple-800">
-                <strong>Interactive Feature:</strong> Click any segment to view detailed patient counts and percentages.
+                <strong>Interactive Feature:</strong> Hover on any segment to view patient counts for each symptom.
               </p>
             </div>
 

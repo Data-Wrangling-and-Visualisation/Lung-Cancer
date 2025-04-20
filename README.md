@@ -80,6 +80,7 @@ Our second milestone was all about creating usefull visualizations using D3 and 
   <img src="SiteDemo1.png" width="45%" alt="Final Frontend Screenshot 1"/>
   <img src="SiteDemo2.png" width="45%" alt="Final Frontend Screenshot 2"/>
 </p>
+
 ---
 
 ### What's Next
