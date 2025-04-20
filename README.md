@@ -1,5 +1,10 @@
 # Lung Cancer Visualization Project
 
+## Live Demo
+
+Check out our deployed project here:  
+[Visit the Live Website](https://lungcancer.vercel.app/)
+
 ## Project Overview
 
 Lung cancer is a significant global health concern. Early detection and awareness play a crucial role in improving survival rates. This project aims to create six interactive visualizations to analyze the relationship between lung cancer symptoms, age, and gender.
@@ -25,11 +30,11 @@ We use an external dataset from Kaggle, which provides detailed information on l
 
 ## Technologies Used
 
-- **Frontend:** D3.js, Three.js, P5.js
-- **Backend:** Flask / FastAPI
-- **Database:** SQLite / PostgreSQL
-- **Data Processing:** Pandas, NumPy, Scikit-learn
-- **Deployment:** Vercel (frontend), Heroku/AWS Lambda (backend), Redis (caching)
+- **Frontend:** Vue, Vite
+- **Backend:** Flask
+- **Visualizations:** D3.js, Three.js
+- **Data Processing + EDA:** Pandas, NumPy, Scikit-learn, Matplotlib, Plotly, Seaborn
+- **Deployment:** Vercel
 
 ## Checkpoints
 
@@ -81,13 +86,17 @@ Our second milestone was all about creating usefull visualizations using D3 and 
   <img src="SiteDemo2.png" width="45%" alt="Final Frontend Screenshot 2"/>
 </p>
 
+- **Created backend**
+
+- **Deployed our project** using Vercel.
+
 ---
 
 ### What's Next
 
-- **Perfect the existing visualizations**: We have made the majority of our visualizations, but some of them need a little more work. Like, creating more interactions and styling them.
+- **Perfect the existing visualizations**:  We want to dedicate more time to each of the six visualizations to make them more visually appealing, engaging, and interactive. While the current versions are functional, we believe there's still room to add creative styling, subtle animations, and smoother interactions that make the visual experience more enjoyable and intuitive
 - Polish the **GitHub repository** with more thorough documentation and code comments.
-- **Host the deployed version**.
+- **Add more interactivity + animations**:  We want to make the visualizations more interactive by adding animations, hover effects, and filters that allow users to explore the data in more engaging and personalized ways.
 
 ---
 ### Running the Application
