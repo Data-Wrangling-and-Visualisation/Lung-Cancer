@@ -7,7 +7,6 @@ let ageLabel;
 let isDataLoaded = false;
 const URL = 'http://127.0.0.1:5000/';
 
-
 function preload() {
     data = loadJSON("radarchart_data.json");
 }
@@ -15,7 +14,6 @@ function preload() {
 function setup() {
     createCanvas(700, 580);
     angleMode(DEGREES);
-
     let indexes = Object.keys(data);
 
     for (let i in indexes) {
