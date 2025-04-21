@@ -7,34 +7,32 @@ let ageLabel;
 let isDataLoaded = false;
 const URL = 'http://127.0.0.1:5000/';
 
+function preload() {
+    data = loadJSON("radarchart_data.json");
+}
+
 function setup() {
     createCanvas(700, 580);
     angleMode(DEGREES);
+    let indexes = Object.keys(data);
 
-    fetch(`radarchart_data.json`)
-        .then(res => res.json())
-        .then(json => {
-            data = json;
-            let indexes = Object.keys(data);
+    for (let i in indexes) {
+        ageGroups.push(data[indexes[i]]['age_group']);
+    }
 
-            for (let i in indexes) {
-                ageGroups.push(data[indexes[i]]['age_group']);
-            }
+    symptoms = Object.keys(data[indexes[0]]).filter(key => key !== "age_group");
 
-            symptoms = Object.keys(data[indexes[0]]).filter(key => key !== "age_group");
+    ageSlider = createSlider(0, ageGroups.length - 1, 0, 1);
+    ageSlider.position(width / 2 - 100, height - 50);
+    ageSlider.style('width', '200px');
 
-            ageSlider = createSlider(0, ageGroups.length - 1, 0, 1);
-            ageSlider.position(width / 2 - 100, height - 50);
-            ageSlider.style('width', '200px');
+    ageLabel = createDiv();
+    ageLabel.position(width / 2 - 100, height - 80);
+    ageLabel.style('font-size', '16px');
+    ageLabel.style('text-align', 'center');
+    ageLabel.style('width', '200px');
 
-            ageLabel = createDiv();
-            ageLabel.position(width / 2 - 100, height - 80);
-            ageLabel.style('font-size', '16px');
-            ageLabel.style('text-align', 'center');
-            ageLabel.style('width', '200px');
-
-            isDataLoaded = true;
-        });
+    isDataLoaded = true;
 }
 
 function draw() {
