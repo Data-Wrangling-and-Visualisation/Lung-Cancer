@@ -5,13 +5,13 @@ let ageGroups = [];
 let currentGroupIndex = 0;
 let ageLabel;
 let isDataLoaded = false;
-const URL = 'http://127.0.0.1:5000';
+const URL = 'http://127.0.0.1:5000/api';
 
 function setup() {
     createCanvas(700, 580);
     angleMode(DEGREES);
 
-    fetch(`${URL}/radarchart_data`)
+    fetch(`radarchart_data`)
         .then(res => res.json())
         .then(json => {
             data = json;
