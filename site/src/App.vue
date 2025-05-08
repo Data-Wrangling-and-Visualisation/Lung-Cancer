@@ -10,12 +10,12 @@
 
       <!-- Visualization Buttons -->
       <div class="flex space-x-4">
-        <router-link to="/visualizations/1" class="px-4 py-2 bg-gray-700 rounded-lg text-white font-medium hover:bg-gray-500 transition-all shadow-md">Vis 1</router-link>
-        <router-link to="/visualizations/2" class="px-4 py-2 bg-gray-700 rounded-lg text-white font-medium hover:bg-gray-500 transition-all shadow-md">Vis 2</router-link>
-        <router-link to="/visualizations/3" class="px-4 py-2 bg-gray-700 rounded-lg text-white font-medium hover:bg-gray-500 transition-all shadow-md">Vis 3</router-link>
-        <router-link to="/visualizations/4" class="px-4 py-2 bg-gray-700 rounded-lg text-white font-medium hover:bg-gray-500 transition-all shadow-md">Vis 4</router-link>
-        <router-link to="/visualizations/5" class="px-4 py-2 bg-gray-700 rounded-lg text-white font-medium hover:bg-gray-500 transition-all shadow-md">Vis 5</router-link>
-        <router-link to="/visualizations/6" class="px-4 py-2 bg-gray-700 rounded-lg text-white font-medium hover:bg-gray-500 transition-all shadow-md">Vis 6</router-link>
+        <router-link to="/visualizations/1" class="px-4 py-2 bg-gray-700 rounded-lg text-white font-medium hover:bg-gray-500 transition-all shadow-md">Heatmap Diagram</router-link>
+        <router-link to="/visualizations/2" class="px-4 py-2 bg-gray-700 rounded-lg text-white font-medium hover:bg-gray-500 transition-all shadow-md">Parallel Coordinates Chart</router-link>
+        <router-link to="/visualizations/3" class="px-4 py-2 bg-gray-700 rounded-lg text-white font-medium hover:bg-gray-500 transition-all shadow-md">3D Bubble Diagram</router-link>
+        <router-link to="/visualizations/4" class="px-4 py-2 bg-gray-700 rounded-lg text-white font-medium hover:bg-gray-500 transition-all shadow-md">Circular Treemap</router-link>
+        <router-link to="/visualizations/5" class="px-4 py-2 bg-gray-700 rounded-lg text-white font-medium hover:bg-gray-500 transition-all shadow-md">Radar Chart</router-link>
+        <router-link to="/visualizations/6" class="px-4 py-2 bg-gray-700 rounded-lg text-white font-medium hover:bg-gray-500 transition-all shadow-md">Sankey Diagram</router-link>
       </div>
     </nav>
 

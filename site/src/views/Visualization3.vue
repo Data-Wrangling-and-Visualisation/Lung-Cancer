@@ -8,9 +8,14 @@
             3D Bubble Visualization
           </span>
         </h1>
-        <p class="text-xl text-gray-600">
-          Exploring symptom prevalence across demographics
-        </p>
+        <div class="mx-auto mt-12 w-full max-w-4xl">
+          <div class="bg-indigo-50 border border-indigo-100 rounded-2xl p-6 shadow-md">
+            <h3 class="text-2xl text-gray-1200 mb-4">Curious how <span class="font-semibold text-indigo-700">symptom frequency</span> shifts with age and gender?</h3>
+            <p class="text-gray-700 mb-4">
+              The <span class="font-semibold text-indigo-700">3D Bubble Chart</span> places symptoms in a 3D space where bubble size reflects how common a symptom is. An age slider lets you explore how symptoms change across age groups, and gender filters let you isolate patterns. When hover over it, information appears - the name of the symptom and the number of people with it. A fun and interactive way to see the big picture.
+            </p>
+          </div>
+        </div>
       </div>
 
       <!-- Main Content -->
@@ -64,6 +69,33 @@
               <li>Interactively explore how gender influences symptom distribution</li>
             </ul>
           </div>
+
+          <!-- How is it useful? (3D Bubble) -->
+          <div class="bg-blue-50 p-6 rounded-lg border border-blue-100 mt-8 space-y-6">
+            <h3 class="text-xl font-semibold text-blue-800 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1V9z" clip-rule="evenodd" />
+              </svg>
+              How is it useful?
+            </h3>
+
+            <div class="space-y-4 text-gray-700 text-sm">
+              <div>
+                <h4 class="font-medium text-blue-700">Case 1: Spotting symptom hotspots by age</h4>
+                <p>
+                  Rotate and zoom into the bubbles for patients aged around 60. If “coughing” bubbles swell dramatically, you instantly see which symptom spikes in that demographic—guiding targeted screening initiatives.
+                </p>
+              </div>
+
+              <div>
+                <h4 class="font-medium text-blue-700">Case 2: Gender-based comparison in one view</h4>
+                <p>
+                  Toggle only “Female” on and slide age to 30–40. Large bubbles for “cough” and "wheezing" vs small for “fatigue” and "shortness of breath" reveal that fatigue dominates in this group—suggesting gender-specific prevention messaging.
+                </p>
+              </div>
+            </div>
+          </div>
+
 
         </div>
       </div>

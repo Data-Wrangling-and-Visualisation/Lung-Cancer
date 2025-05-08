@@ -1,5 +1,5 @@
 // Set canvas size and radius for the circular clip area
-const width = 800;
+const width = 700;
 const radius = width / 2;
 
 // Create the base SVG and append a <g> element where everything will go

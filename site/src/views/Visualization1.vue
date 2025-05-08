@@ -19,10 +19,16 @@
             Symptom Heatmap Analysis
           </span>
         </h1>
-        <p class="text-xl text-gray-600">
-          Visualizing symptom prevalence across age groups
-        </p>
+        <div class="mx-auto mt-12 w-full max-w-4xl">
+          <div class="bg-indigo-50 border border-indigo-100 rounded-2xl p-6 shadow-md">
+            <p class="text-2xl text-gray-1200 mb-4">Curious how <span class="font-semibold text-indigo-700">age</span> impacts <span class="font-semibold text-indigo-700">symptoms</span>?</p>
+            <p class="text-gray-700 mb-4">
+              Our <span class="font-semibold text-indigo-700">heatmap visualization</span> reveals how common symptoms vary across different age groups. Each colored cell shows how frequently a symptom appears for a specific age range — darker shades mean higher frequency.
+            </p>
+          </div>
+        </div>
       </div>
+
 
       <!--
         Main content section split into two parts:
@@ -30,6 +36,7 @@
         2. A right-hand panel that describes how to interpret the heatmap.
       -->
       <div class="flex flex-col lg:flex-row gap-8 items-start">
+
 
         <!--
           Heatmap Container:
@@ -43,6 +50,7 @@
               title="Symptom Heatmap Visualization"
           ></iframe>
         </div>
+
 
         <!--
           Description Panel:
@@ -105,6 +113,48 @@
                 <li>Prioritize symptoms that frequently co-occur in critical age ranges</li>
                 <li>Support early detection by highlighting emerging patterns</li>
               </ul>
+            </div>
+
+            <!-- Utility Section: Provides concrete examples of how to interpret the chart in the context of real patient diagnoses-->
+            <div class="bg-indigo-50 p-6 rounded-lg border border-indigo-100">
+              <h3 class="font-semibold text-lg mb-3 text-indigo-800 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1V9z" clip-rule="evenodd" />
+                </svg>
+                How is it useful?
+              </h3>
+
+              <div class="space-y-4">
+                <div>
+                  <h4 class="font-medium text-indigo-700 mb-1">Case 1: Young patient with persistent cough</h4>
+                  <p class="text-sm text-gray-700">
+                    Imagine a 85-year-old patient who has been coughing for 3 months and had shortness of breath. On the map, we look at their age group (80-89 years) and the "coughing" symptom. If this cell is <span class="font-bold text-green-600">yellow/green</span>, it means this symptom is rarely associated with serious conditions at this age. The doctor might first check for allergies or asthma rather than immediately ordering complex tests.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 class="font-medium text-indigo-700 mb-1">Case 2: Elderly patient with severe fatigue</h4>
+                  <p class="text-sm text-gray-700">
+                    For a 70-year-old complaining of constant fatigue, we check their age group. If the "yellow fingers" cell is <span class="font-bold text-red-600">red</span> and nearby cells for "coughing" and "shortness of breath" are also red, this is a warning sign. It means this combination often appears with serious conditions. The doctor will ask follow-up questions and may order tests.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 class="font-medium text-indigo-700 mb-1">Case 3: 50-year-old male smoker with chest pain</h4>
+                  <p class="text-sm text-gray-700">
+                    For a 50-year-old smoker with chest pain, the map will show: if pain combines with <span class="font-bold text-red-600">red</span> "chronic disease" or "coughing", this is alarming. But if the pain cell is <span class="font-bold text-yellow-500">yellow</span> and other symptoms are <span class="font-bold text-green-600">green</span>, the cause might be less dangerous (like stomach issues).
+                  </p>
+                </div>
+
+                <div class="bg-blue-50 p-4 rounded-lg text-sm">
+                  <p class="font-medium text-blue-800 mb-1">Quick Reference:</p>
+                  <ul class="text-left list-disc pl-5 space-y-1">
+                    <li><span class="font-bold text-red-600">Red</span> = "Warning! Often indicates serious conditions in this age group"</li>
+                    <li><span class="font-bold text-green-600">Green</span> = "Typically not associated with dangerous conditions"</li>
+                    <li>Always check neighboring symptoms, not just individual cells</li>
+                  </ul>
+                </div>
+              </div>
             </div>
 
           </div>

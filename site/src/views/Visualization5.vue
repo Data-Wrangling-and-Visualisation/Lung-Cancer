@@ -9,9 +9,14 @@
             Radar Chart Analysis
           </span>
         </h1>
-        <p class="text-xl text-gray-600">
-          Visualizing symptom patterns by age group
-        </p>
+        <div class="mx-auto mt-12 w-full max-w-4xl">
+          <div class="bg-indigo-50 border border-indigo-100 rounded-2xl p-6 shadow-md">
+            <h3 class="text-2xl text-gray-1200 mb-4"> Want to track symptom changes as people <span class="font-semibold text-indigo-700">get older</span>?</h3>
+            <p class="text-gray-700 mb-4">
+              The <span class="font-semibold text-indigo-700">Radar Chart</span> places symptoms around a circle and shows how common each one is depending on the selected age. It’s an excellent way to see which symptoms become more or less common over time.
+            </p>
+          </div>
+        </div>
       </div>
 
       <div class="flex flex-col lg:flex-row gap-8 items-start">
@@ -78,6 +83,41 @@
                 <li>Track how symptom patterns change with age progression</li>
                 <li>Spot unusual spikes or drops in symptom frequency</li>
               </ul>
+            </div>
+
+            <!-- How is it useful? -->
+            <div class="bg-indigo-50 p-6 rounded-lg border border-indigo-100">
+              <h3 class="font-semibold text-lg mb-3 text-indigo-800 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1V9z" clip-rule="evenodd" />
+                </svg>
+                How is it useful?
+              </h3>
+
+              <div class="space-y-4">
+                <div>
+                  <h4 class="font-medium text-indigo-700 mb-1">Case 1: Evaluating middle-aged smokers</h4>
+                  <p class="text-sm text-gray-700">
+                    For a 40-year-old person, the radar chart might show prominent spikes in "allergy", "chronic disease" and "coughing" compared to other symptoms. This visual pattern helps clinicians prioritize these symptoms during examination and consider early screening, even if other complaints seem minor.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 class="font-medium text-indigo-700 mb-1">Case 2: Assessing geriatric patients</h4>
+                  <p class="text-sm text-gray-700">
+                    When evaluating an 80-year-old, the chart may reveal that "yellow fingers", "fatigue" and "allergy" dominate their symptom profile while "chest pain" is less pronounced. This helps explain why lung cancer often goes undiagnosed in elderly patients - their symptoms differ from textbook cases.
+                  </p>
+                </div>
+
+                <div class="bg-blue-50 p-4 rounded-lg text-sm">
+                  <p class="font-medium text-blue-800 mb-1">Key Features:</p>
+                  <ul class=" text-left list-disc pl-5 space-y-1">
+                    <li>Each axis represents a different symptom</li>
+                    <li>The further the point from center, the more prevalent</li>
+                    <li>Compare shapes across age groups</li>
+                  </ul>
+                </div>
+              </div>
             </div>
 
           </div>
